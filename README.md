@@ -9,6 +9,6 @@ npm install
 ```
 npm run serve
 ```
-This application works together with this python-flask backendcode: https://github.com/oscarskjal/cv_arcada
+This application works together with this python-flask backendcode: https://github.com/oscarskjal/Flask_CV
 
 Simply start the backend and frontend to start the application with all of its features!
