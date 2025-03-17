@@ -1,4 +1,4 @@
-This is simple computer vision application that acts as a short introduction to Arcada!
+This is a simple computer vision application that acts as a short introduction to Arcada!
 
 ## Project setup
 ```
