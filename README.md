@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-# cv_arcada
-=======
-# cv_arcada
+This is simple computer vision application that acts as a short introduction to Arcada!
 
 ## Project setup
 ```
@@ -12,17 +9,6 @@ npm install
 ```
 npm run serve
 ```
+This application works together with this python-flask backendcode: https://github.com/oscarskjal/cv_arcada
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
->>>>>>> 67ae8bd (.))
+Simply start the backend and frontend to start the application with all of its features!
