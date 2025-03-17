@@ -36,8 +36,10 @@ export default {
     this.socket = io("http://localhost:5000", {
       transports: ["websocket", "polling"],
     });
+
     this.socket.on("faces_detected", (data) => {
-      this.faces = data.faces;
+      this.faces = data.faces || [];
+      this.$emit("facesDetected", this.faces.length > 0);
     });
   },
   beforeUnmount() {

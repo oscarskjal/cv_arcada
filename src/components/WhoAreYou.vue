@@ -1,24 +1,40 @@
 <template>
   <div class="who-are-you">
-    <h1>What am i?</h1>
+    <h1>What am I?</h1>
     <p>
-      I am an innovative application about Arcada University of Applied Sciences
-      that leverages the power of OpenCV to enhance user experience. Our app
-      integrates advanced computer vision techniques to provide seamless and
-      intuitive interactions.
+      This is an innovative application that leverages the power of OpenCV to
+      enhance user experience. This app integrates computer vision techniques to
+      provide seamless and intuitive interactions.
     </p>
     <p>
-      By utilizing OpenCV, we are able to offer features such as real-time image
-      processing, object detection, and facial recognition. Our goal is to
-      create smart solutions that make interactions more efficient, while also
+      By utilizing OpenCV, the app is able to offer features such as real-time
+      image processing, object detection, and facial recognition. The goal is to
+      create smart solutions that make everyday tasks more efficient, while also
       providing a fun and engaging user experience.
     </p>
+    <button @click="speakText">🔊 Speak</button>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "WhoAreYou",
+  methods: {
+    async speakText() {
+      const text = `We are an innovative application that leverages the power of OpenCV to enhance user experience. Our app integrates advanced computer vision techniques to provide seamless and intuitive interactions. By utilizing OpenCV, we are able to offer features such as real-time image processing, object detection, and facial recognition. Our goal is to create smart solutions that make everyday tasks easier and more efficient, while also providing a fun and engaging user experience.`;
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/text_to_speech",
+          { text }
+        );
+        console.log(response.data.message);
+      } catch (error) {
+        console.error("Error speaking text:", error);
+      }
+    },
+  },
 };
 </script>
 
@@ -44,5 +60,20 @@ export default {
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 10px;
+}
+
+.who-are-you button {
+  background-color: #2ecc72;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.who-are-you button:hover {
+  background-color: #0f85b8;
 }
 </style>

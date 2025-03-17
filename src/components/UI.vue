@@ -1,17 +1,34 @@
 <template>
   <div class="container">
-    <div class="button-grid">
-      <button class="button blue" @click="showAboutUs">About Us</button>
-      <button class="button red" @click="showLayout">Layout</button>
-      <button class="button green" @click="showWhoAreYou">Who Are You?</button>
-      <button class="button yellow" @click="showFaceDetection">
-        Face Detection
-      </button>
+    <div class="content">
+      <div class="button-grid">
+        <div class="button-container">
+          <button class="button blue" @click="showAboutUs">About Us</button>
+        </div>
+        <div class="button-container">
+          <button class="button red" @click="showLayout">Layout</button>
+        </div>
+        <div class="button-container">
+          <button class="button green" @click="showWhoAreYou">
+            Who Are You?
+          </button>
+        </div>
+        <div class="button-container">
+          <button class="button yellow" @click="showFaceDetection">
+            Face Detection
+          </button>
+        </div>
+      </div>
+      <div class="text-content">
+        <AboutUs v-if="isAboutUsVisible" />
+        <Layout v-if="isLayoutVisible" />
+        <WhoAreYou v-if="isWhoAreYouVisible" />
+        <FaceDetection
+          v-if="isFaceDetectionVisible"
+          @facesDetected="handleFaceDetected"
+        />
+      </div>
     </div>
-    <AboutUs v-if="isAboutUsVisible" />
-    <Layout v-if="isLayoutVisible" />
-    <WhoAreYou v-if="isWhoAreYouVisible" />
-    <FaceDetection v-if="isFaceDetectionVisible" />
   </div>
 </template>
 
@@ -62,16 +79,27 @@ export default {
       this.isLayoutVisible = false;
       this.isWhoAreYouVisible = false;
     },
+    handleFaceDetected() {
+      console.log("Face detected, backend handles the response.");
+    },
   },
 };
 </script>
+
 <style scoped>
 .container {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   background-color: #f3f3f3;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  align-items: flex-start;
 }
 
 .button-grid {
@@ -82,6 +110,11 @@ export default {
   background: white;
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
 }
 
 .button {
@@ -99,6 +132,18 @@ export default {
   font-weight: bold;
 }
 
+.speak-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.text-content {
+  margin-left: 20px;
+}
+
 .blue {
   background-color: #3498db;
 }
@@ -112,7 +157,6 @@ export default {
 .red:hover {
   background-color: #c0392b;
 }
-
 .green {
   background-color: #2ecc71;
 }
@@ -126,5 +170,12 @@ export default {
 }
 .yellow:hover {
   background-color: #d4ac0d;
+}
+
+.robot-text {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #3498db;
+  text-align: center;
 }
 </style>

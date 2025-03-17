@@ -21,12 +21,29 @@
       <h2>Floor 5</h2>
       <p>Classrooms</p>
     </div>
+    <button @click="speakText">🔊 Speak</button>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "LayOut",
+  methods: {
+    async speakText() {
+      const text = `Building Layout: Floor 1: Entry, Coat hanging area. Floor 2: Cafeteria, Large auditorium, Small auditorium, Library, Infopoint. Floor 3: IT lab, Computer lounge, Classrooms. Floor 4: Nursing student rooms, Classrooms. Floor 5: Classrooms.`;
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/text_to_speech",
+          { text }
+        );
+        console.log(response.data.message);
+      } catch (error) {
+        console.error("Error speaking text:", error);
+      }
+    },
+  },
 };
 </script>
 
@@ -42,7 +59,7 @@ export default {
 }
 
 .layout h1 {
-  color: #b86cf6;
+  color: #e08529;
   font-size: 28px;
   margin-bottom: 20px;
 }
@@ -52,7 +69,7 @@ export default {
 }
 
 .floor h2 {
-  color: #e59a10;
+  color: #c04417;
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -61,5 +78,20 @@ export default {
   color: #333333;
   font-size: 18px;
   line-height: 1.6;
+}
+
+.layout button {
+  background-color: #dd720e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.layout button:hover {
+  background-color: #f0190a;
 }
 </style>
